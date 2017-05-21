@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
+ * 首页网络数据解析
  * Created by 15827 on 2017/5/20.
  */
 

@@ -1,7 +1,6 @@
 package com.hsc.googleplay.ui.fragment;
 
 import android.view.View;
-import android.widget.ListView;
 
 import com.hsc.googleplay.domain.AppInfo;
 import com.hsc.googleplay.http.protocol.HomeProtocol;
@@ -9,6 +8,7 @@ import com.hsc.googleplay.ui.adapter.MyBaseAdapter;
 import com.hsc.googleplay.ui.holder.BaseHolder;
 import com.hsc.googleplay.ui.holder.HomeHolder;
 import com.hsc.googleplay.ui.view.LoadingPager;
+import com.hsc.googleplay.ui.view.MyListView;
 import com.hsc.googleplay.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class HomeFragment extends BaseFragment {
         /*TextView view = new TextView(UIUtils.getContext());
         view.setText(getClass().getName());
         view.setTextColor(Color.parseColor("#FF00FF"));*/
-        ListView view = new ListView(UIUtils.getContext());
+        MyListView view = new MyListView(UIUtils.getContext());
         view.setAdapter(new HomeAdapter(data));
         return view;
     }

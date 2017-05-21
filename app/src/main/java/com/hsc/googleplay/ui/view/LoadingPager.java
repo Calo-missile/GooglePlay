@@ -3,6 +3,7 @@ package com.hsc.googleplay.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.hsc.googleplay.R;
@@ -52,6 +53,13 @@ public abstract class LoadingPager extends FrameLayout{
         //加载失败的布局
         if (mErrorPage == null) {
             mErrorPage = UIUtils.inflate(R.layout.pager_erro);
+            Button btnRetry = (Button) mErrorPage.findViewById(R.id.btn_error_retry); 
+            btnRetry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadDate();
+                }
+            });
             //Log.i("info", "mErrorPage: ");
             addView(mErrorPage);
         }

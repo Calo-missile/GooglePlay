@@ -15,17 +15,16 @@ import com.hsc.googleplay.utils.UIUtils;
 import org.xutils.image.ImageOptions;
 
 /**
- * Created by 15827 on 2017/5/19.
+ * Created by 15827 on 2017/5/21.
  */
 
-public class HomeHolder extends BaseHolder<AppInfo> {
-
+public class AppHolder extends BaseHolder<AppInfo> {
     private TextView tvName;
     private TextView tvSize;
     private TextView tvDes;
     private ImageView ivIcon;
     private RatingBar rbStar;
-    
+
     private ImageOptions mBitmapUitls;
 
     @Override
@@ -38,8 +37,8 @@ public class HomeHolder extends BaseHolder<AppInfo> {
         tvDes = (TextView) view.findViewById(R.id.tv_des);
         ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
         rbStar = (RatingBar)view.findViewById(R.id.rb_star);
-        
-        
+
+
         return view;
     }
 
