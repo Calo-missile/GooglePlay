@@ -3,6 +3,8 @@ package com.hsc.googleplay.ui.fragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.hsc.googleplay.domain.AppInfo;
+import com.hsc.googleplay.http.protocol.HomeProtocol;
 import com.hsc.googleplay.ui.adapter.MyBaseAdapter;
 import com.hsc.googleplay.ui.holder.BaseHolder;
 import com.hsc.googleplay.ui.holder.HomeHolder;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends BaseFragment {
     
-    private ArrayList<String> data;
+    //private ArrayList<String> data;
+    private ArrayList<AppInfo> data;
 
     //如果加载成功，就回调此方法，在主线程运行
     @Override
@@ -34,24 +37,46 @@ public class HomeFragment extends BaseFragment {
     @Override
     public LoadingPager.ResultState onLoad() {
 
-        data = new ArrayList<String>();
+        /*data = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             data.add("测试数据:" + i);
-        }
+        }*/
+        HomeProtocol protocol = new HomeProtocol();
+        //加载首页的数据
+        data = protocol.getData(0);
+        
 
         //请求网络
-        return LoadingPager.ResultState.STATE_SUCCESS;
+        return check(data);
     }
     
-    class HomeAdapter extends MyBaseAdapter<String>{
+    
+    
+    class HomeAdapter extends MyBaseAdapter<AppInfo>{
 
-        public HomeAdapter(ArrayList<String> data) {
+        public HomeAdapter(ArrayList<AppInfo> data) {
             super(data);
         }
 
         @Override
-        public BaseHolder<String> getHolder() {
+        public BaseHolder<AppInfo> getHolder() {
             return new HomeHolder();
+        }
+
+        //此方法在子线程 刷新更多
+        @Override
+        public ArrayList<AppInfo> onLoadMore() {
+            /*ArrayList<AppInfo> moreData = new ArrayList<AppInfo>();
+
+            for (int i = 0; i < 20; i++) {
+                moreData.add("测试更多数据：" + i);
+            }
+            SystemClock.sleep(2000);*/
+            HomeProtocol protocol = new HomeProtocol();
+            //20,40,60...
+            //下一页数据的位置 等于当前集合的大小
+            ArrayList<AppInfo> moreResult = protocol.getData(getSize());
+            return moreResult;
         }
 
 

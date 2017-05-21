@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import com.hsc.googleplay.ui.view.LoadingPager;
 import com.hsc.googleplay.utils.UIUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by 15827 on 2017/5/18.
  */
@@ -49,5 +51,22 @@ public abstract class BaseFragment extends Fragment {
         if (mLoadingPage != null) {
             mLoadingPage.loadDate();
         }
+    }
+    
+    //对网络合法性数据进行检验
+    public LoadingPager.ResultState check(Object obj){
+        if (obj != null) {
+
+            if (obj instanceof ArrayList) {//判断是否是集合
+                ArrayList list = (ArrayList) obj;
+
+                if (list.isEmpty()) {
+                    return LoadingPager.ResultState.STATE_EMPTY;
+                } else {
+                    return LoadingPager.ResultState.STATE_SUCCESS;
+                }
+            }
+        }
+        return LoadingPager.ResultState.STATE_ERROR;
     }
 }

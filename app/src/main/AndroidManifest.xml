@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.hsc.googleplay">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".global.GoogleApplication"
         android:allowBackup="true"
