@@ -25,13 +25,13 @@ public class SubjectHolder extends BaseHolder<SubjectInfo> {
         mIvPic = (ImageView) view.findViewById(R.id.iv_pic);
         mTvTitle = (TextView) view.findViewById(R.id.tv_title);
         
-        
         return view;
     }
 
     @Override
     public void refreshView(SubjectInfo data) {
         mTvTitle.setText(data.des);
-        Glide.with(UIUtils.getContext()).load(HttpHelper.URL + "image?name=" + data.url);
+        Glide.with(UIUtils.getContext()).load(HttpHelper.URL + "image?name=" + data.url).into(mIvPic);
+        //LogUtils.d(data.url);
     }
 }

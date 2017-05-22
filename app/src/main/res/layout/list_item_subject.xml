@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
@@ -12,11 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
-        <ImageView
-            android:id="@+id/iv_pic"
-            android:src="@drawable/subject_default"
+        <com.hsc.googleplay.ui.view.RatioLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:ratio="2.43">
+            <ImageView
+                android:id="@+id/iv_pic"
+                android:src="@drawable/subject_default"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.hsc.googleplay.ui.view.RatioLayout>
+        
         
         <TextView
             android:id="@+id/tv_title"
