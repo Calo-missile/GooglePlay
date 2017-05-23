@@ -6,6 +6,7 @@ import com.hsc.googleplay.domain.AppInfo;
 import com.hsc.googleplay.http.protocol.HomeProtocol;
 import com.hsc.googleplay.ui.adapter.MyBaseAdapter;
 import com.hsc.googleplay.ui.holder.BaseHolder;
+import com.hsc.googleplay.ui.holder.HomeHeaderHolder;
 import com.hsc.googleplay.ui.holder.HomeHolder;
 import com.hsc.googleplay.ui.view.LoadingPager;
 import com.hsc.googleplay.ui.view.MyListView;
@@ -21,15 +22,23 @@ public class HomeFragment extends BaseFragment {
     
     //private ArrayList<String> data;
     private ArrayList<AppInfo> data;
+    private ArrayList<String> mPicturesList;
 
     //如果加载成功，就回调此方法，在主线程运行
     @Override
     public View onCreateSuccessView() {
-        /*TextView view = new TextView(UIUtils.getContext());
-        view.setText(getClass().getName());
-        view.setTextColor(Color.parseColor("#FF00FF"));*/
+        
         MyListView view = new MyListView(UIUtils.getContext());
+        
+        //给listView添加头布局，展示轮播条
+        HomeHeaderHolder header = new HomeHeaderHolder();
+        view.addHeaderView(header.getRootView());
         view.setAdapter(new HomeAdapter(data));
+
+        if (mPicturesList != null) {
+            //设置轮播数据
+            header.setData(mPicturesList);
+        }
         return view;
     }
 
@@ -44,7 +53,8 @@ public class HomeFragment extends BaseFragment {
         HomeProtocol protocol = new HomeProtocol();
         //加载首页的数据
         data = protocol.getData(0);
-        
+
+        mPicturesList = protocol.getPicturesList();
 
         //请求网络
         return check(data);
