@@ -1,9 +1,12 @@
 package com.hsc.googleplay.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.hsc.googleplay.domain.AppInfo;
 import com.hsc.googleplay.http.protocol.HomeProtocol;
+import com.hsc.googleplay.ui.activity.HomeDetailActivity;
 import com.hsc.googleplay.ui.adapter.MyBaseAdapter;
 import com.hsc.googleplay.ui.holder.BaseHolder;
 import com.hsc.googleplay.ui.holder.HomeHeaderHolder;
@@ -39,6 +42,19 @@ public class HomeFragment extends BaseFragment {
             //设置轮播数据
             header.setData(mPicturesList);
         }
+        
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppInfo appInfo = data.get(position - 1);//对象传递，包名，要减去头布局
+                if (appInfo != null) {
+                    Intent intent = new Intent(UIUtils.getContext(), HomeDetailActivity.class);
+                    intent.putExtra("packageName", appInfo.packageName);//传递参数
+                    startActivity(intent);
+                }
+                
+            }
+        });
         return view;
     }
 

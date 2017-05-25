@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.hsc.googleplay.R;
 import com.hsc.googleplay.domain.CategoryInfo;
 import com.hsc.googleplay.http.HttpHelper;
-import com.hsc.googleplay.utils.LogUtils;
 import com.hsc.googleplay.utils.UIUtils;
 
 /**
@@ -54,7 +53,7 @@ public class CategoryHolder extends BaseHolder<CategoryInfo> implements View.OnC
         tvName1.setText(data.name1);
         tvName2.setText(data.name2);
         tvName3.setText(data.name3);
-        LogUtils.d("CategoryHolder-------"+data.name1);
+        //LogUtils.d("CategoryHolder-------"+data.name1);
 
         Glide.with(UIUtils.getContext()).load(HttpHelper.URL + "image?name=" + data.url1).into(ivIcon1);
         Glide.with(UIUtils.getContext()).load(HttpHelper.URL + "image?name=" + data.url2).into(ivIcon2);

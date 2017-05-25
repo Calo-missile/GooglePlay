@@ -10,7 +10,6 @@ import com.hsc.googleplay.ui.holder.CategoryHolder;
 import com.hsc.googleplay.ui.holder.TitleHolder;
 import com.hsc.googleplay.ui.view.LoadingPager;
 import com.hsc.googleplay.ui.view.MyListView;
-import com.hsc.googleplay.utils.LogUtils;
 import com.hsc.googleplay.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class CategoryFragment extends BaseFragment {
         public int getInnerType(int position) {
             //判断是标题类型还是普通类型
             CategoryInfo info = mData.get(position);
-            LogUtils.d("CategoryFragment--------"+position);
+            //LogUtils.d("CategoryFragment--------"+position);
             if (info.isTitle) {
                 //返回标题类型
                 return super.getInnerType(position) + 1;//原来类型基础上+1，
